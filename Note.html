@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="NoteApp">
 <head>
     <meta charset="UTF-8">
     <title>Note</title>
-    <script src="js/angular.min.js"></script>
+    <script src="angular.min.js"></script>
     <script src="app/noteAPP.js"></script>
     <script src="app/noteController.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
     <link rel="stylesheet" type="text/css" href="CSS/style.css" media="all"/>
 </head>
-<body>
+<body ng-controller="NoteController as noteCtrl">
 
-<div"topPage">
+<div name="topPage">
     <label>
         Ex 1 : Note Application
     </label>
@@ -18,18 +19,19 @@
 
 <br><br>
 
-<div name = "textNote">
-    <textarea name="note" id="note" rows="10" cols="50"></textarea>
-</div>
+<div name = "textNote" >
+    <textarea name="note" id="note" rows="5" cols="50" ng-model="noteCtrl.messageNote" ng-change="noteCtrl.count()" maxlength="100">{{noteCtrl.sauvegarde}}</textarea>
+
 
 <div name="buttonAction" >
     <input type="button" name="enregistrer" id="enregistrer" value="Enregistrer">
-    <input type="button" name="effacer" id="effacer" value="Effacer">
-</div name="nbRestant">
-
-<div>
-
+    <input type="button" name="effacer" id="effacer" value="Effacer" ng-click="noteCtrl.clear()">
 </div>
 
+
+Nombre de caractères restant : {{noteCtrl.caractere}}
+
+
+</div>
 </body>
 </html>
