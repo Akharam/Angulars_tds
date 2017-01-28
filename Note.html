@@ -7,40 +7,36 @@
     <script src="app/noteAPP.js"></script>
     <script src="app/noteController.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="CSS/style.css" media="all"/>
-    <link href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body ng-controller="NoteController as noteCtrl">
-<div id="mainNote" class="ng-scope">
+<div id="mainNote" class="panel panel-primary">
 <div name="topPage" class="panel-heading">
     Ex 1 : Note Application
 </div>
 
 <br><br>
 
-<div name = "textNote" >
-    <label> Note : </label>
-    <br>
-    <textarea name="note" id="note" rows="5" cols="50" ng-model="noteCtrl.messageNote" ng-change="noteCtrl.count()" maxlength="100">{{noteCtrl.sauvegarde}}</textarea>
+    <div name = "body" classe="panel-body" >
+        <label> Note : </label>
+       
+        <textarea data-ng-change = "noteCtrl.info='Note modifiee'"data-ng-model="noteCtrl.messageNote" name="messageNote" id="messageNote" cols="40" rows="5" class="form-control ng-valid ng-valid-maxlength ng-dirty ng-touched" maxlength="100"></textarea>
+       
+        <button class="btn btn-primary" data-ng-click="noteCtrl.save()">Enregistrer</button>
+        <button class="btn btn-primary" data-ng-click="noteCtrl.clear()">Effacer</button>
 
-    <br><br>
+        <div class="alert alert-dismissible" data-ng-class="noteCtrl.status" role="alert">
+            Nombre de caractères restant :<span data-ng-bind="noteCtrl.count()" class="ng-binding">100</span>
+        </div>
+      
+        <div data-ng-class="{'alert-warning': noteCtrl.count()<50 && noteCtrl.info!='Note sauvegardée','alert-danger':noteCtrl.count()<20 && noteCtrl.info!='Note sauvegardée','alert-success':noteCtrl.info=='Note sauvegardée'}" class="alert alert-dismissible alert-info ng-hide" role="alert" data-ng-show="noteCtrl.info">
+                   <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-ng-click="noteCtrl.info=''"><span aria-hidden="true">×</span></button>
+                   <span  data-ng-bind="noteCtrl.info" class="ng-binding"></span>
+               </div>
 
 
-    <button class="btn btn-primary" ng-click="noteCtrl.save()">Enregistrer</button>
-    <button class="btn btn-primary" ng-click="noteCtrl.clear()">Effacer</button>
-</div>
-
-
-Nombre de caractères restant : {{noteCtrl.caractere}}
-
-    <div data-ng-class="{'alert-warning': count()<50 && info!='Note sauvegardée', 'alert-danger' : count()<20 && info!='Note sauvegardée', 'alert-succedd': info =='Note sauvegardée'}" class="alert alert-dismissible alert-info ng-hide" role="alert" data-ng-show="info">
-        <span class="ng-binding">Note modifiée</soan>
-    
     </div>
-
-</div>
 </div>
 </body>
 </html>

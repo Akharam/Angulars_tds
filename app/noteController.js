@@ -4,28 +4,31 @@
 
 NoteApp.controller("NoteController", ["$cookies", function ($cookies) {
     var self = this;
-    this.messageNote = "";
+    this.messageNote = $cookies.get('message');
     this.info = "";
-    this.caractere = 100;
-    this.status = 2;
+    this.status="";
     
     this.count = function () {
-        self.caractere = 100 - this.messageNote.length;
-        self.info ="Note modifiée";
+        var caractere = 100 - this.messageNote.length;
+        if(caractere<50 && caractere>=20)
+                self.status="alert-warning";
+            else if(caractere<20)
+                self.status="alert-danger";
+            else
+                self.status="alert-info";
+        return caractere;
     };
 
     this.clear = function () {
         self.messageNote = "";
-        self.caractere = 100;
         self.info="";
     };
     
     this.save = function () {
-      // Retrieving a cookie
-  //var favoriteCookie = $cookies.get('myFavorite');
-  // Setting a cookie
-        $cookies.put('Note', self.messageNote);
-        self.info = "Note sauvegardée";
+      if(self.messageNote!="") {
+          self.info = "Note sauvegardée";
+          $cookies.put('message', this.messageNote);
+      }
     };
 
 }]);
