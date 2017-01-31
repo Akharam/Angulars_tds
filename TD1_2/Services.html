@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ServicesApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Note</title>
+    <script src="angular.min.js"></script>
+    <script src="app/ServicesApp.js"></script>
+    <script src="app/ServicesController.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body ng-controller="ServicesController as servicesCtrl">
+    <div ng-view class="toggle ng-scope" style>
+    <form id="services" class="ng-valid ng-scope ng-dirty ng-valid-parse" style>
+        <h1>Services</h1>
+        
+        <div class="alert alert-info">
+            <span>Choisissez les éléments à inclure</span>
+            
+            <p>
+                <ng-pluralize count="servicesCtrl.total()" when="{
+                                                  0:'Aucun service sélectionné',
+                                                  1:'1 service sélectionné',
+                                                  'other':'{} services sélectionnés'
+                                                  }">Aucun service sélectionné</ng-pluralize>
+                
+            </p>
+        </div>
+    </form>
+    </div>
+</body>
+</html>
