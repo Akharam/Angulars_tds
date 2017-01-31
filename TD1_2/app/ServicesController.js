@@ -28,13 +28,15 @@ servicesApp.controller("ServicesController", function(){
         }
         return count;
     
-};
+    };
 
-    this.toggleActive = function(){
-        
+    this.toggleActive = function(service){
+        for(var val in self.services){
+            if(self.services[val].name == service.name && !service.active )
+                service.active = true;
+            else if(self.services[val].name == service.name && service.active )
+                service.active = false;
+        }
     };
     
-                                            
-                                              
-                       
-                       });
+});
