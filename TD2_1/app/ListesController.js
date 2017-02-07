@@ -47,4 +47,35 @@ listesApp.controller("ListesController", function(){
     this.selectedIncludedItems=[]
     
     this.step;
+    
+    this.addToIncluded = function(){
+        self.includedItems.push.apply(self.includedItems, self.selectedDispoItems);
+        for(var x; x<self.selectedDispoItems; x++){
+            self.includedItems.push(self.selectedDispoItems[x]);
+        }
+        
+        for(var x;x<self.dispoItems.length; x++){
+            var y = self.dispoItems.indexOf(self.selectedDispoItems[x]);
+                dispoItems.splice(y, 1);
+        }
+        self.selectedDispoItems=[];
+    };
+    
+    this.addAllToIncluded = function(){
+        if(self.dispoItems.length!=0){
+        self.includedItems=self.dispoItems;
+        self.dispoItems=[];
+        }
+    };
+    
+    this.removeFromIncluded = function(){
+        
+    };
+    
+    this.removeAllFromIncluded = function(){
+        if(self.includedItems.length!= 0){
+        self.dispoItems=self.includedItems;
+        self.includedItems=[];
+        }
+    };
 });

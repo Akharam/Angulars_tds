@@ -14,12 +14,18 @@
         <h4>Sélectionnez vos produits</h4>
         <select size="8" multiple="multiple"  
                 ng-options="item.title for item in liste.dispoItems" 
-                data-ng-model="liste.selectedDispoItems">
+                data-ng-model="liste.selectedDispoItems"
+                ng-dblclick="">
         </select>
+    </div>
+    <div>
+        <button value =">|" ng-click="liste.addToIncluded()">>|</button>
+        <button value =">>|" ng-click="liste.addAllToIncluded()">>>|</button>
+        <button value ="<|" ng-click="liste.removeFromIncluded()">|<</button>
+        <button value ="<<|" ng-click="liste.removeAllFromIncluded()">|<<</button>
     </div>
     
     <div ng-view class="toggle ng-scope" style>
-        <h4>Sélectionnez vos produits</h4>
         <select size="8" multiple="multiple"  
                 ng-options="item.title for item in liste.includedItems" 
                 data-ng-model="liste.selectedIncludedItems">
