@@ -27,13 +27,14 @@
             </p>
         </div>
         
-        <ul>
-            <li ng-repeat="service in servicesCtrl.services" ng-clicl="servicesCtrl.toggleActive(service)"  ng-class="{active: service.active}" class="ng-binding ng-scope" style>
-                {{service.name}}
-                <span class="ng-binding">{{service.price | currency}}</span>
-            </li>
+        <div>
+            <p ng-repeat="service in servicesCtrl.services">
+                <button ng-click="servicesCtrl.toggleActive(service)" ng-class="{'active' : service.active} ">{{service.name}} {{service.price | currency: $ : 2}}</button>
+                </p>
+        </div>
         
-        </ul>
+        <hr>
+        <h2>Total : {{servicesCtrl.prix}} </h2>
     </form>
     </div>
 </body>

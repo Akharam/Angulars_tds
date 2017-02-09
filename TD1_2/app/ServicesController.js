@@ -1,6 +1,7 @@
 servicesApp.controller("ServicesController", function(){
         
         var self = this;
+        this.prix = 300;
         this.services =[
     {
         "name": "Web Development",
@@ -32,10 +33,12 @@ servicesApp.controller("ServicesController", function(){
 
     this.toggleActive = function(service){
         for(var val in self.services){
-            if(self.services[val].name == service.name && !service.active )
+            if(self.services[val].name == service.name && !service.active ){
                 service.active = true;
-            else if(self.services[val].name == service.name && service.active )
+                self.prix = self.prix+service.price;}
+            else if(self.services[val].name == service.name && service.active ){
                 service.active = false;
+                self.prix = self.prix-service.price;}
         }
     };
     
