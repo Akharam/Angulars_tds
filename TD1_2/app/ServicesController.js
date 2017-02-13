@@ -1,7 +1,11 @@
-servicesApp.controller("ServicesController", function(){
+servicesApp.controller("ServicesController",['$http',function($http){
         
         var self = this;
         this.prix = 300;
+        this.code=[];
+        this.codePromo="";
+        this.promoChecked=false;
+        this.reduc=1.00;
         this.services =[
     {
         "name": "Web Development",
@@ -20,7 +24,13 @@ servicesApp.controller("ServicesController", function(){
         "price": 220,
         "active":false
     }
-];
+    ];
+                       
+    ($http.get('app/promo.json')).then(function(data){
+        self.codes = data.data;
+        console.log(self.codes);
+    });
+
     this.total = function(){
         var count = 0;
         for(var val in self.services){
@@ -42,4 +52,14 @@ servicesApp.controller("ServicesController", function(){
         }
     };
     
-});
+    this.checkCode=function(){
+        console.log(JSON.stringify(self.codes));
+        if (this.codePromo.length>0 && self.codes[this.codePromo]){
+            this.reduction=1-self.codes[this.codePromo];
+        }
+        else{
+            this.reduction=1;
+        }
+    }
+    
+}]);

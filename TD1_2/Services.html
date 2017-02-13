@@ -34,7 +34,25 @@
         </div>
         
         <hr>
-        <h2>Total : {{servicesCtrl.prix}} </h2>
+        <h2>Total : {{servicesCtrl.prix | currency}} </h2>
+        
+         <div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input type="checkbox" ng-model="servicesCtrl.selPromo" ng-click="servicesCtrl.checkCode()" >
+            </span>
+            <input type="text" class="form-control" ng-model="servicesCtrl.code" placeholder="Code promo" ng-keyup="servicesCtrl.checkCode()" >
+        </div>
+    </div>
+    <div class = "remise" ng-show="servicesCtrl.promoChecked">
+        <div >Remise : {{servicesCtrl.prix*(1-servicesCtrl.reduc)|currency}}
+            <span ng-show="servicesCtrl.reduc==1">Code promo invalide</span>
+
+        </div>
+         <div class="total">Total avec remise :  {{servicesCtrl.prix*servicesCtrl.reduc| currency}}
+        </div>
+    </div>
+
     </form>
     </div>
 </body>
