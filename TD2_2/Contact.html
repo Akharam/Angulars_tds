@@ -13,19 +13,19 @@
         <div class="panel panel-primary">
             <div class="panel-heading">Contacts</div>
             <div class="panel-body">
-                <input type="text" placeholder="Filtrer..." class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" style>
+                <input type="text" data-ng-model="q" placeholder="Filtrer..." class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" style>
                 
-                <table  id="lstContact">
+                <table  class="table table-striped"id="lstContact">
                     <tbody >
-                            <tr contact-elem class="animate-repeat ng-scope" data-ng-repeat="contact in contact.contacts">
+                            <tr contact-elem class="animate-repeat ng-scope" data-ng-repeat="contact in contact.contacts |filter:q as results">
                             <td class="ng-binding" ng-hide="contact.suppr">{{contact.nom}}</td>
                             <td class="ng-binding" ng-hide="contact.suppr">{{contact.prenom}}</td>
                             <td class="ng-binding" ng-hide="contact.suppr">{{contact.mail}}</td>
                             <td>
-                                <a class="btn btn-info btn-xs">
+                                <a class="btn btn-info btn-xs" ng-hide="contact.suppr">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="ture"></span>
                                 </a>
-                                <a class="btn btn-danger btn-xs">
+                                <a class="btn btn-danger btn-xs" ng-hide="contact.suppr" data-ng-click="contact.delete(contact)">
                                     <span class="glyphicon glyphicon-remove-circle" aria-hidden="ture"></span>
                                 </a>
                             </td>
@@ -34,15 +34,14 @@
                             
                     </tbody>
                     <td colspan="4">
-                                <a id="add" class="btn-primary">Ajouter...</a>    
-                            
+                                <button id="add" data-ng-click="contact.toAdd()" class="btn btn-primary">Ajouter...</button>                            
                             </td>
                 </table>
                 
             </div>
             
-                <fieldset data-ng-show="edit" class="container form-group form-inline" style>
-                    <legend class="ng-binding">Ajouter un contact</legend>
+                <fieldset data-ng-show="contact.edit" class="container form-group form-inline" style>
+                    <legend class="ng-binding" data-ng-show="contact.operation=='ajout'"  >Ajouter un contact</legend>
                     <form name="frmContact" class="ng-valid-email ng-dirty ng-submitted ng-invalid nb-invalid-required" style>
                         <input class="form-control ng-pristine ng-touched ng-invalid ng-invalid-required" type="text" placeholder="Entre un nom..." required style>
                         
@@ -52,7 +51,7 @@
                         
                         <input type="submit" value="Valider" class="btn btn-primary">
                         
-                        <input type="button" value="Annuler" data-ng-click="edit = false" class="btn btn-primary">
+                        <input type="button" value="Annuler" data-ng-click="contact.edit = false" class="btn btn-primary">
                     </form>
                 </fieldset>
         </div>

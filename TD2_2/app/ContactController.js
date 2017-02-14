@@ -1,6 +1,6 @@
 contactsApp.controller("contactController" , function(){
     
-    this.self = this;
+    var self = this;
     this.contacts=[
     {
         "nom": "ZUCKERBERG",
@@ -16,31 +16,35 @@ contactsApp.controller("contactController" , function(){
         "nom": "JOBS",
         "prenom": "steeve",
         "mail": "Steeve@apple.com",
-        "suppr":true
+        "suppr":false
     }];
     
     this.contact;
     this.tmpContact;
-    this.operation"";
+    this.operation="";
     this.edit=false;
     
     this.toUpdate = function(contact){
-        
+        self.operation="modif";
     };
     
     this.toAdd = function(){
-        
+        self.edit=true;
+        self.operation="ajout";
     };
     
     this.add = function(){
         
     };
     
-    this.update(){
+    this.update= function(){
         
     };
     
     this.delete = function(contact){
+        for(var x; x<self.contacts; x++){
+            if(self.contacts[x].nom == this.contact.nom)
+                self.contacts[x].suppr = true;        }
         
     };
 });
