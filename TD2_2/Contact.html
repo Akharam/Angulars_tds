@@ -1,0 +1,61 @@
+<html lang="fr" ng-app="ContactsApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Services</title>
+    <script src="angular.min.js"></script>
+    <script src="app/ContactApp.js"></script>
+    <script src="app/directives.js"></script>
+    <script src="app/ContactController.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+    
+    <body ng-controller="contactController as contact">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Contacts</div>
+            <div class="panel-body">
+                <input type="text" placeholder="Filtrer..." class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" style>
+                
+                <table  id="lstContact">
+                    <tbody >
+                            <tr contact-elem class="animate-repeat ng-scope" data-ng-repeat="contact in contact.contacts">
+                            <td class="ng-binding" ng-hide="contact.suppr">{{contact.nom}}</td>
+                            <td class="ng-binding" ng-hide="contact.suppr">{{contact.prenom}}</td>
+                            <td class="ng-binding" ng-hide="contact.suppr">{{contact.mail}}</td>
+                            <td>
+                                <a class="btn btn-info btn-xs">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="ture"></span>
+                                </a>
+                                <a class="btn btn-danger btn-xs">
+                                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="ture"></span>
+                                </a>
+                            </td>
+                            
+                            </tr>
+                            
+                    </tbody>
+                    <td colspan="4">
+                                <a id="add" class="btn-primary">Ajouter...</a>    
+                            
+                            </td>
+                </table>
+                
+            </div>
+            
+                <fieldset data-ng-show="edit" class="container form-group form-inline" style>
+                    <legend class="ng-binding">Ajouter un contact</legend>
+                    <form name="frmContact" class="ng-valid-email ng-dirty ng-submitted ng-invalid nb-invalid-required" style>
+                        <input class="form-control ng-pristine ng-touched ng-invalid ng-invalid-required" type="text" placeholder="Entre un nom..." required style>
+                        
+                        <input class ="form-control ng-valid ng-touched ng-dirty" type="text" placeholder="Prénom..." style>
+                        
+                        <input class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required" type="email" placeholder="Adresse email..." required style>
+                        
+                        <input type="submit" value="Valider" class="btn btn-primary">
+                        
+                        <input type="button" value="Annuler" data-ng-click="edit = false" class="btn btn-primary">
+                    </form>
+                </fieldset>
+        </div>
+    
+    </body>
+</html>
