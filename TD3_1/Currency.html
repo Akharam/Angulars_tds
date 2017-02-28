@@ -23,12 +23,38 @@
                     <select data-ng-model="currency.to" data-ng-options="v.code + ' - ' + v.name for (k, v) in currency.currencies" class="form-control ng-pristine ng-untouched ng-valid">
                     </select>
                     
-                    <input type="button" value="Convertir" class="btn btn-primary">
+                    <input type="button" value="Convertir" class="btn btn-primary" data-ng-click ="currency.getResult()">
                     
-                    <input data-ng-model="resul.value" type="text" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" size="5">
+                    <input data-ng-model="currency.result" type="text" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" size="5">
+                    
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" data-ng-model="histo" class="ng-valid ng-dirty ng-valid-parse ng-touched" style>
+                            Historique
+                        </label>
+                    </div>
                     
 
                 </form>
+            </div>
+            <div class="container-fluid">
+                <div data-ng-show="histo" class="panel panel-default" style>
+                    <div class="panel-body">
+                        <table class="table table-striped" id="lstHisto" style="table-layout:fixed; width: 100%">
+                            <tbody>
+                                <tr>
+                                    <th>DE</th>
+                                    <th>EN</th>
+                                    <th class="text-center">Tx</th>
+                                    <th class="text-center">Montant</th>
+                                    <th class="text-center">Date</th>
+                                    <th class="text-center">Delta</th>
+                                </tr>
+                                <tr histo-elem class="animate-repeat ng-scope" data-ng-repeat="(id,conversion) in historique" data-ng-class="{'info' : conversion.update, 'danger': conversion.delta<0, 'success': conversion.delta>0}" style></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>    
     </body>

@@ -3,7 +3,7 @@ currencyApp.controller("currencyController" ,['$http', function($http){
     
     this.result;
     
-    
+    this.histo = false;
     
     $http.get('app/currencymap.json').
     then(function(response) {
@@ -14,17 +14,8 @@ currencyApp.controller("currencyController" ,['$http', function($http){
     function(response) {
         console.log("Erreur avec le statut Http : "+response.status);
     });
+
     
-    $sceDelegateProvider.resourceUrlWhitelist([
-        'self',
-        'https://free.currencyconverterapi.com/**'
-    ]);
-    
-    $http.jsonp('https://free.currencyconverterapi.com/api/v3/convert?compact=y&q='+self.from.code+'_'+self.to.code, {jsonpCallbackParam: 'callback'})
-    .then(function(response) {
-        self.result=response.data[self.from.code+'_'+self.to.code].val;
-        
-    });
     
     this.swap = function(){
         var tmp;
@@ -34,6 +25,8 @@ currencyApp.controller("currencyController" ,['$http', function($http){
     };
     
     this.getResult = function(){
-          
-    };
+          $http.jsonp('https://free.currencyconverterapi.com/api/v3/convert?compact=y&q='+self.from.code+'_'+self.to.code, {jsonpCallbackParam: 'callback'})
+    .then(function(response) {
+        self.result=response.data[self.from.code+'_'+self.to.code].val;
+    })};
 }]);
