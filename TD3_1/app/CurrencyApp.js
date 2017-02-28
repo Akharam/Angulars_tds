@@ -1,0 +1,1 @@
+var currencyApp = angular.module("CurrencyApp", []);

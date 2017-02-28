@@ -1,4 +1,4 @@
-servicesApp.controller("ServicesController",['$http',function($http){
+angular.module("ContactsApp").controller("ServicesController",['$http',function($http){
         
         var self = this;
         this.prix = 300;
