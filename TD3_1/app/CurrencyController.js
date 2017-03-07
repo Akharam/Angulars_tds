@@ -4,6 +4,7 @@ currencyApp.controller("currencyController" ,['$http', function($http){
     this.result;
     
     this.histo = false;
+    this.historique = [];
     
     $http.get('app/currencymap.json').
     then(function(response) {
@@ -28,5 +29,9 @@ currencyApp.controller("currencyController" ,['$http', function($http){
           $http.jsonp('https://free.currencyconverterapi.com/api/v3/convert?compact=y&q='+self.from.code+'_'+self.to.code, {jsonpCallbackParam: 'callback'})
     .then(function(response) {
         self.result=response.data[self.from.code+'_'+self.to.code].val;
+        var conversion={from : self.from, 
+        to : self.to
+        };
+        self.historique.push(conversion);
     })};
 }]);
