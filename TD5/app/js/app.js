@@ -11,4 +11,7 @@ var app = angular.module("MainModule").config(['$routeProvider',
             controller: 'RouteController',
             controllerAs: 'rtCtrl2'
         });
-    }]);angular.module("AutModule", ['ngRoute']);
+    }]).factory("config", function () { return {nom: "Mutlti-Modules APP", version: "1.0", paths:{"/":[{caption:"Se connecter", href:"/login"}]}};}
+    
+);
+angular.module("AutModule", ['ngRoute']);
