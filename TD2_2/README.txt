@@ -1,0 +1,1 @@
+Il manque les boutons modifier/supprimer qui ne donnent suite à rien, et le formulaire d'ajout existe bien mais il n'ajoute pas l'élément à la liste lorsque l'on clique sur ajouter.
